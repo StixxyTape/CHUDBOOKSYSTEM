@@ -1,6 +1,10 @@
 package CHUDBOOKSYSTEM;
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
 public class LibraryManagementSystem {
     // Core Data Structures
@@ -24,7 +28,8 @@ public class LibraryManagementSystem {
                 case "3" -> placeStockOrder();
                 case "4" -> balanceBooks();
                 case "5" -> viewAllCatalogue();
-                case "6" -> {
+                case "6" -> addBook();
+                case "7" -> {
                     System.out.println("Logging out...");
                     running = false;
                 }
@@ -47,7 +52,8 @@ public class LibraryManagementSystem {
         System.out.println("3. Place Stock Order");
         System.out.println("4. Balance Books (Accounting)");
         System.out.println("5. View All Books");
-        System.out.println("6. Exit");
+        System.out.println("6. Add Book");
+        System.out.println("7. Exit");
         System.out.print("Select an option: ");
     }
 
@@ -121,6 +127,23 @@ public class LibraryManagementSystem {
         } else {
             inventory.values().forEach(System.out::println);
         }
+    }
+
+    private static void addBook() {
+        System.out.print("Enter ISBN: ");
+        String isbn = scanner.nextLine();
+        if (inventory.containsKey(isbn)) {
+            System.out.println("Book with this ISBN already exists.");
+            return;
+        }
+        System.out.print("Enter Title: ");
+        String title = scanner.nextLine();
+        System.out.print("Enter Price: ");
+        BigDecimal price = new BigDecimal(scanner.nextLine());
+        System.out.print("Enter Initial Stock Level: ");
+        int stockLevel = Integer.parseInt(scanner.nextLine());
+        inventory.put(isbn, new Book(isbn, title, price, stockLevel));
+        System.out.println("Book added successfully.");
     }
 
     private static void seedData() {
