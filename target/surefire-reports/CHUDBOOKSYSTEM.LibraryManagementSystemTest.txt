@@ -1,0 +1,114 @@
+-------------------------------------------------------------------------------
+Test set: CHUDBOOKSYSTEM.LibraryManagementSystemTest
+-------------------------------------------------------------------------------
+Tests run: 14, Failures: 12, Errors: 0, Skipped: 0, Time elapsed: 0.066 s <<< FAILURE! -- in CHUDBOOKSYSTEM.LibraryManagementSystemTest
+CHUDBOOKSYSTEM.LibraryManagementSystemTest.testBookInStockNotOnOrder -- Time elapsed: 0.018 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
+	at CHUDBOOKSYSTEM.LibraryManagementSystemTest.testBookInStockNotOnOrder(LibraryManagementSystemTest.java:60)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+CHUDBOOKSYSTEM.LibraryManagementSystemTest.testPaymentValidation_insufficientFunds -- Time elapsed: 0.004 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
+	at CHUDBOOKSYSTEM.LibraryManagementSystemTest.testPaymentValidation_insufficientFunds(LibraryManagementSystemTest.java:25)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+CHUDBOOKSYSTEM.LibraryManagementSystemTest.testOutOfStockFlagSetAtZero -- Time elapsed: 0.002 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
+	at CHUDBOOKSYSTEM.LibraryManagementSystemTest.testOutOfStockFlagSetAtZero(LibraryManagementSystemTest.java:67)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+CHUDBOOKSYSTEM.LibraryManagementSystemTest.testNetworkConnectionCheck -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
+	at CHUDBOOKSYSTEM.LibraryManagementSystemTest.testNetworkConnectionCheck(LibraryManagementSystemTest.java:113)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+CHUDBOOKSYSTEM.LibraryManagementSystemTest.testBookAddedToCatalogue -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
+	at CHUDBOOKSYSTEM.LibraryManagementSystemTest.testBookAddedToCatalogue(LibraryManagementSystemTest.java:39)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+CHUDBOOKSYSTEM.LibraryManagementSystemTest.testEmployeeLevelsHaveCorrectAccess -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
+	at CHUDBOOKSYSTEM.LibraryManagementSystemTest.testEmployeeLevelsHaveCorrectAccess(LibraryManagementSystemTest.java:74)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+CHUDBOOKSYSTEM.LibraryManagementSystemTest.testStockDoesNotGoNegative -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
+	at CHUDBOOKSYSTEM.LibraryManagementSystemTest.testStockDoesNotGoNegative(LibraryManagementSystemTest.java:53)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+CHUDBOOKSYSTEM.LibraryManagementSystemTest.testBooksBalanceCorrectly -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
+	at CHUDBOOKSYSTEM.LibraryManagementSystemTest.testBooksBalanceCorrectly(LibraryManagementSystemTest.java:90)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+CHUDBOOKSYSTEM.LibraryManagementSystemTest.testInvalidISBNThrowsException -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:73)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3115)
+	at CHUDBOOKSYSTEM.LibraryManagementSystemTest.testInvalidISBNThrowsException(LibraryManagementSystemTest.java:81)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+CHUDBOOKSYSTEM.LibraryManagementSystemTest.testBookRemovedFromCatalogueOnSale -- Time elapsed: 0 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
+	at CHUDBOOKSYSTEM.LibraryManagementSystemTest.testBookRemovedFromCatalogueOnSale(LibraryManagementSystemTest.java:46)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+CHUDBOOKSYSTEM.LibraryManagementSystemTest.testBookReturn -- Time elapsed: 0 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
+	at CHUDBOOKSYSTEM.LibraryManagementSystemTest.testBookReturn(LibraryManagementSystemTest.java:106)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+CHUDBOOKSYSTEM.LibraryManagementSystemTest.testPriceDoesNotGoNegative -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
+	at CHUDBOOKSYSTEM.LibraryManagementSystemTest.testPriceDoesNotGoNegative(LibraryManagementSystemTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
