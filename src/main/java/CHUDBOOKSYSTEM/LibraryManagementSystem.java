@@ -8,27 +8,57 @@ import java.util.Scanner;
 
 public class LibraryManagementSystem {
     // Core Data Structures
-    private static Map<String, Book> inventory = new HashMap<>();
-    private static List<Transaction> ledger = new ArrayList<>();
-    private static Scanner scanner = new Scanner(System.in);
-    private static String currentStaff = "None";
+    static Map<String, Book> inventory = new HashMap<>();
+    static List<Transaction> ledger = new ArrayList<>();
+    static String currentStaff = "None";
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         seedData();
-        showLogin();
-        
+
+        System.out.println("--- Library System Login ---");
+        System.out.print("Enter Staff Name: ");
+        showLogin(scanner.nextLine());
+
         boolean running = true;
         while (running) {
             printMenu();
             String choice = scanner.nextLine();
 
             switch (choice) {
-                case "1" -> processSale();
-                case "2" -> searchCatalogue();
-                case "3" -> placeStockOrder();
+                case "1" -> {
+                    System.out.print("Scan/Enter ISBN: ");
+                    String isbn = scanner.nextLine();
+                    System.out.print("Enter Postage Fee (0 if none): ");
+                    BigDecimal postage = new BigDecimal(scanner.nextLine());
+                    System.out.print("Amount Paid: ");
+                    BigDecimal paid = new BigDecimal(scanner.nextLine());
+                    processSale(isbn, postage, paid);
+                }
+                case "2" -> {
+                    System.out.print("Enter ISBN or Title: ");
+                    searchCatalogue(scanner.nextLine());
+                }
+                case "3" -> {
+                    System.out.print("Enter ISBN to restock: ");
+                    String isbn = scanner.nextLine();
+                    System.out.print("Quantity to order: ");
+                    int qty = Integer.parseInt(scanner.nextLine());
+                    placeStockOrder(isbn, qty);
+                }
                 case "4" -> balanceBooks();
                 case "5" -> viewAllCatalogue();
-                case "6" -> addBook();
+                case "6" -> {
+                    System.out.print("Enter ISBN: ");
+                    String isbn = scanner.nextLine();
+                    System.out.print("Enter Title: ");
+                    String title = scanner.nextLine();
+                    System.out.print("Enter Price: ");
+                    BigDecimal price = new BigDecimal(scanner.nextLine());
+                    System.out.print("Enter Initial Stock Level: ");
+                    int stock = Integer.parseInt(scanner.nextLine());
+                    addBook(isbn, title, price, stock);
+                }
                 case "7" -> {
                     System.out.println("Logging out...");
                     running = false;
@@ -36,16 +66,15 @@ public class LibraryManagementSystem {
                 default -> System.out.println("Invalid option.");
             }
         }
+        scanner.close();
     }
 
-    private static void showLogin() {
-        System.out.println("--- Library System Login ---");
-        System.out.print("Enter Staff Name: ");
-        currentStaff = scanner.nextLine();
+    static void showLogin(String staffName) {
+        currentStaff = staffName;
         System.out.println("Welcome, " + currentStaff + ".\n");
     }
 
-    private static void printMenu() {
+    static void printMenu() {
         System.out.println("\n--- MAIN MENU (Staff: " + currentStaff + ") ---");
         System.out.println("1. Scan/Sell Book");
         System.out.println("2. Search Catalogue");
@@ -57,9 +86,7 @@ public class LibraryManagementSystem {
         System.out.print("Select an option: ");
     }
 
-    private static void processSale() {
-        System.out.print("Scan/Enter ISBN: ");
-        String isbn = scanner.nextLine();
+    static void processSale(String isbn, BigDecimal postage, BigDecimal paid) {
         Book book = inventory.get(isbn);
 
         if (book == null || book.stockLevel <= 0) {
@@ -67,19 +94,12 @@ public class LibraryManagementSystem {
             return;
         }
 
-        System.out.print("Enter Postage Fee (0 if none): ");
-        BigDecimal postage = new BigDecimal(scanner.nextLine());
-        
         BigDecimal total = book.price.add(postage);
         System.out.println("Total Due: $" + total);
-
-        System.out.print("Amount Paid: ");
-        BigDecimal paid = new BigDecimal(scanner.nextLine());
 
         if (paid.compareTo(total) >= 0) {
             BigDecimal change = paid.subtract(total);
             System.out.println("Transaction Complete. Change: $" + change);
-            
             book.stockLevel--;
             ledger.add(new Transaction(isbn, book.price, postage, "SALE"));
         } else {
@@ -87,28 +107,24 @@ public class LibraryManagementSystem {
         }
     }
 
-    private static void searchCatalogue() {
-        System.out.print("Enter ISBN or Title: ");
-        String query = scanner.nextLine().toLowerCase();
-        
+    static void searchCatalogue(String query) {
+        String q = query.toLowerCase();
         inventory.values().stream()
-            .filter(b -> b.isbn.contains(query) || b.title.toLowerCase().contains(query))
+            .filter(b -> b.isbn.contains(q) || b.title.toLowerCase().contains(q))
             .forEach(System.out::println);
     }
 
-    private static void placeStockOrder() {
-        System.out.print("Enter ISBN to restock: ");
-        String isbn = scanner.nextLine();
+    static void placeStockOrder(String isbn, int qty) {
         if (inventory.containsKey(isbn)) {
-            System.out.print("Quantity to order: ");
-            int qty = Integer.parseInt(scanner.nextLine());
             inventory.get(isbn).stockLevel += qty;
             ledger.add(new Transaction(isbn, BigDecimal.ZERO, BigDecimal.ZERO, "STOCK_IN"));
             System.out.println("Stock updated.");
+        } else {
+            System.out.println("ISBN not found.");
         }
     }
 
-    private static void balanceBooks() {
+    static void balanceBooks() {
         BigDecimal totalSales = ledger.stream()
             .filter(t -> t.type.equals("SALE"))
             .map(t -> t.amount.add(t.postage))
@@ -120,7 +136,7 @@ public class LibraryManagementSystem {
         System.out.println("Discrepancies: $0.00 (Books Balanced)");
     }
 
-    private static void viewAllCatalogue() {
+    static void viewAllCatalogue() {
         System.out.println("\n--- COMPLETE CATALOGUE ---");
         if (inventory.isEmpty()) {
             System.out.println("No books in catalogue.");
@@ -129,24 +145,16 @@ public class LibraryManagementSystem {
         }
     }
 
-    private static void addBook() {
-        System.out.print("Enter ISBN: ");
-        String isbn = scanner.nextLine();
+    static void addBook(String isbn, String title, BigDecimal price, int stockLevel) {
         if (inventory.containsKey(isbn)) {
             System.out.println("Book with this ISBN already exists.");
             return;
         }
-        System.out.print("Enter Title: ");
-        String title = scanner.nextLine();
-        System.out.print("Enter Price: ");
-        BigDecimal price = new BigDecimal(scanner.nextLine());
-        System.out.print("Enter Initial Stock Level: ");
-        int stockLevel = Integer.parseInt(scanner.nextLine());
         inventory.put(isbn, new Book(isbn, title, price, stockLevel));
         System.out.println("Book added successfully.");
     }
 
-    private static void seedData() {
+    static void seedData() {
         inventory.put("101", new Book("101", "The Java Handbook", new BigDecimal("29.99"), 5));
         inventory.put("102", new Book("102", "Effective Coding", new BigDecimal("45.00"), 2));
     }
